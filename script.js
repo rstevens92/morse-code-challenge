@@ -1,9 +1,10 @@
 // import the html elements into the script
 // create character object array
 
-const inputBox = document.querySelector('.input-box');
-const translateButton = document.querySelector('.translate-button');
-const outputBox = document.querySelector('.output-box');
+const inputBox = document.getElementById('input-box');
+const translateButton = document.getElementById('translate-button');
+const clearButton = document.getElementById('clear-button');
+const outputBox = document.getElementById('output-box');
 
 // const testingClick = () => {
 //     console.log('working click')
@@ -57,30 +58,50 @@ const morseCharacterArray =[
     {lowerChar : ' ', upperChar : ' ', morseChar : '/'}
 ]
 
-const applyInputValue = () => {
-    const inputValue = inputBox.value
-    const characterToTranslate = inputValue.charAt(inputValue.length -1);
-    inputArr.push(characterToTranslate);
+
+
+const getTranslationClickHandler = () => {
+    
+        const applyInputValue = () => {
+        const inputValue = inputBox.value
+        const characterToTranslate = inputValue.split("");
+    // const characterToTranslate = inputValue.charAt(inputValue.length -1);
+        inputArr = characterToTranslate;
+    }
+
+        const findMorseObject = () => {
+            const foundMorseObject = inputArr.map(inputValue => {
+                return morseCharacterArray.find(morseCharacter => {
+                    return morseCharacter.lowerChar === inputValue || morseCharacter.upperChar === inputValue;
+                })
+            })
+            translateObjectArr = foundMorseObject;
+            console.log(foundMorseObject);
+        }
+
+        const translateMorse = () => {
+            const getMorseChar = translateObjectArr.map((morseObject) => morseObject.morseChar);
+            console.log(getMorseChar);
+            outputArr = getMorseChar;
+        }
+
+        const showTranslation = () => {
+            const translation = outputArr.join(" ");
+            console.log(translation);
+            outputBox.innerHTML = translation;
+            inputArr = [];
+            translateObjectArr = [];
+            outputArr = [];
+        }    
+
+    applyInputValue();
+    findMorseObject();
+    translateMorse();
+    showTranslation();
 }
 
-const findMorseObject = () => {
-    const foundMorseObject = inputArr.map(inputValue => {
-        return morseCharacterArray.find(morseCharacter => {
-            return morseCharacter.lowerChar === inputValue || morseCharacter.upperChar === inputValue;
-        })
-    })
-    translateObjectArr.push(foundMorseObject);
-    console.log(foundMorseObject);
-}
+const clearPage = () => location.reload();
 
-const translateMorse = () => {
-    const getMorseChar = translateObjectArr.map(morseObject => {
-       return morseObject.morseChar;
-    })
-    outputArr.push(getMorseChar);
-    console.log(getMorseChar);
-}
-
-inputBox.addEventListener('input', applyInputValue);
-translateButton.addEventListener('click', findMorseObject);
-translateButton.addEventListener('click', translateMorse);
+translateButton.addEventListener('click', getTranslationClickHandler);
+inputBox.addEventListener('keyup', getTranslationClickHandler);
+clearButton.addEventListener('click', clearPage);

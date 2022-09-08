@@ -5,15 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Morse code Translator</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
     <h1>Morse Code Translator</h1>
     <h2>-- --- .-. ... . / -.-. --- -.. . / - .-. .- -. ... .-.. .- - --- .-.</h2>
 
-    <input class="input-box" type="text">
-    <button class="translate-button">Translate</button>
-    <input class="output-box" type="text">    
+        <input id="input-box" class="morse-char-box" type="text" placeholder="Text to translate">
+    <div class="button-container">
+        <button id="translate-button" class="morse-char-button">Translate</button>
+        <button id="clear-button" class="morse-char-button">Clear</button>
+    </div>
+        <output id="output-box" class="morse-char-box" type="text">    
 
     <script src="./script.js"></script>
 </body>

@@ -11,7 +11,13 @@ class morseCharacter {
         this.lowerChar = lowerChar;
         this.morseChar = morseChar;
     }
-
+    
+    findMorseCharacter(inputChar) {
+        if(inputChar === this.upperChar || inputChar === this.lowerChar){
+            return this.morseChar;
+        }
+    }
+    
 }
 
 const morseA = new morseCharacter ("A", "a", ".-");
@@ -52,18 +58,12 @@ const morse8 = new morseCharacter ("8", "8", "---..");
 const morse9 = new morseCharacter ("9", "9", "----.");
 const morseSpc = new morseCharacter (" ", " ", "/");
 
-const applyInputValue = () => {
-    const inputValue = inputBox.value
-    const characterToTranslate = inputValue.charAt(inputValue.length -1);
-    inputArr.push(characterToTranslate);
-}
+console.log(findMorseCharacter(applyInputValue));
 
-const findMorseObject = () => {
-    for (i=0; i=inputArr.length; i++){
-        
-    }
+const applyInputValue = (event) => {
+    const inputChar = event.target.value;
+    return inputChar;
 }
-
 
 inputBox.addEventListener("input", applyInputValue);
 translateButton.addEventListener("click", findMorseObject);
